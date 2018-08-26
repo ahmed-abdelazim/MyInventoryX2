@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">MyInventoryX2</string>
+    <string name="no_items_in_inventory">OoopS! There is no Items!</string>
+    <string name="inventory_menu_dummy_items">Insert dummy Item</string>
+    <string name="inventory_menu_add_item">Create new item</string>
+    <string name="inventory_menu_delete_all_items">Delete all inventory</string>
+    <string name="toast_item_added_successfully">Successfully added!</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">CANCEL</string>
+    <string name="item_name">Name</string>
+    <string name="item_supplier_name">Supplier</string>
+    <string name="order_more">More</string>
+    <string name="change_image">Change image</string>
+    <string name="item_price">Price</string>
+    <string name="plus">More</string>
+    <string name="item_quantity">Quantity</string>
+    <string name="minus">Less</string>
+    <string name="item_supplier_mail">Supplier email</string>
+    <string name="details_edit_item">Edit</string>
+    <string name="details_add_item">Add</string>
+    <string name="order_more_item">more</string>
+    <string name="no_mail_client_installed">There is no mail client on your device</string>
+    <string name="toast_image_error_retrieve">Cannot find image</string>
+    <string name="error_required">Required</string>
+    <string name="toast_item_updated">Item updated</string>
+    <string name="toast_item_error_update">Error while trying to update</string>
+    <string name="toast_item_error_adding">Cannot add item</string>
+    <string name="details_menu_item_delete">Delete item</string>
+    <string name="details_menu_item_save">Save</string>
+    <string name="send_mail">email the supplier</string>
+    <string name="toast_item_quantity_negative">Quantity cannot be negative</string>
+    <string name="dummy_item_name">Dummy Item</string>
+    <string name="dummy_supplier_email">supplier@supplierDomain.com</string>
+    <string name="dummy_supplier_name">Supplier name</string>
+</resources>

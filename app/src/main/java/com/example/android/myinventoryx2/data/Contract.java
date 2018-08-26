@@ -10,13 +10,12 @@ import android.provider.BaseColumns;
 
 public final class Contract {
 
-    private Contract() {}
-
     public static final String INVENTORY_CONTENT_AUTHORITY = "com.example.android.myinventoryx2";
-
     public static final Uri INVENTORY_BASE_CONTENT_URI = Uri.parse("content://" + INVENTORY_CONTENT_AUTHORITY);
-
     public static final String INVENTORY_PATH = "inventory";
+
+    private Contract() {
+    }
 
     public static class InventoryEntry implements BaseColumns {
         public static final String INVENTORY_CONTENT_LIST_TYPE =

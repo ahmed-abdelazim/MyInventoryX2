@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.android.myinventoryx2.data.Contract;
 
 
@@ -19,7 +20,7 @@ import com.example.android.myinventoryx2.data.Contract;
  * Created by Person on 26/08/2018.
  */
 
-public class Adapter extends CursorAdapter{
+public class Adapter extends CursorAdapter {
 
 
     public Adapter(Context context, Cursor c) {

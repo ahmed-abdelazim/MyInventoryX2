@@ -3,13 +3,14 @@ package com.example.android.myinventoryx2.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import com.example.android.myinventoryx2.data.Contract.InventoryEntry;
+
 /**
  * Created by Person on 26/08/2018.
  */
 
-public class DbHelper  extends SQLiteOpenHelper {
-
+public class DbHelper extends SQLiteOpenHelper {
 
 
     private static final String INVENTORY_DB_NAME = "inventory.db";
@@ -37,7 +38,6 @@ public class DbHelper  extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-
 
 
 }

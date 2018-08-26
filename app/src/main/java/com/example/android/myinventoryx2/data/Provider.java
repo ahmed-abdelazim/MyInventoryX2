@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.example.android.myinventoryx2.data.Contract.InventoryEntry;
 
 import java.util.regex.Matcher;
@@ -18,7 +19,7 @@ import java.util.regex.Pattern;
  * Created by Person on 26/08/2018.
  */
 
-public class Provider  extends ContentProvider {
+public class Provider extends ContentProvider {
 
     private static final String LOG_TAG = Provider.class.getSimpleName();
 

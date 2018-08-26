@@ -7,13 +7,12 @@
         android:id="@+id/menu_save"
         android:icon="@drawable/action_save"
         android:title="@string/details_menu_item_save"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_delete"
         android:icon="@drawable/action_delete"
         android:title="@string/details_menu_item_delete"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 
 </menu>

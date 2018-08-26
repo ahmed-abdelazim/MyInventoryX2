@@ -20,12 +20,12 @@
 
         <activity
             android:name=".Editor"
-            android:parentActivityName=".Catalog"/>
+            android:parentActivityName=".Catalog" />
 
         <provider
             android:name=".data.Provider"
             android:authorities="com.example.android.myinventoryx2"
-            android:exported="true"/>
+            android:exported="true" />
 
     </application>
 

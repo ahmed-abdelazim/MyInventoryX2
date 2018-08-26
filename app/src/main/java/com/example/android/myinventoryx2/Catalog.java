@@ -6,13 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -109,7 +109,7 @@ public class Catalog extends AppCompatActivity implements LoaderManager.LoaderCa
     }
 
     private void insertDummyItem() {
-        String dummyName =getString(R.string.dummy_item_name);
+        String dummyName = getString(R.string.dummy_item_name);
         int dummyQuantity = 50;
         int dummyPrice = 100;
         String dummyEmail = getString(R.string.dummy_supplier_email);
@@ -146,7 +146,6 @@ public class Catalog extends AppCompatActivity implements LoaderManager.LoaderCa
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
 
 
 }

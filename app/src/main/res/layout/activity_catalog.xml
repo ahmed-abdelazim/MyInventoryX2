@@ -9,7 +9,7 @@
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"/>
+        android:orientation="vertical" />
 
     <RelativeLayout
         android:id="@+id/empty_view"
@@ -21,9 +21,9 @@
             android:id="@+id/empty_view_image"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:paddingBottom="20dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/no_product"/>
+            android:paddingBottom="20dp"
+            android:src="@drawable/no_product" />
 
         <TextView
             style="@style/TextAppearance.AppCompat.Headline"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/empty_view_image"
             android:layout_centerHorizontal="true"
-            android:text="@string/no_items_in_inventory"/>
+            android:text="@string/no_items_in_inventory" />
     </RelativeLayout>
 
 

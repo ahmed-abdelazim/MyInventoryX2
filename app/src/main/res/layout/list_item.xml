@@ -45,11 +45,11 @@
                 tools:text="The Seller name" />
 
             <TextView
-                android:id="@+id/item_supplier_mail_view"
+                android:id="@+id/item_supplier_phone_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/padding_small"
-                tools:text="Seller@sellerDomain.com" />
+                tools:text="5565554847" />
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -38,14 +38,14 @@ public class Adapter extends CursorAdapter {
         ImageView itemImageView = view.findViewById(R.id.item_image);
         TextView itemNameView = view.findViewById(R.id.item_name_view);
         TextView itemSupplierNameView = view.findViewById(R.id.item_supplier_name_view);
-        TextView itemSupplierMailView = view.findViewById(R.id.item_supplier_mail_view);
+        TextView itemSupplierMailView = view.findViewById(R.id.item_supplier_phone_view);
         TextView itemQuantityView = view.findViewById(R.id.item_quantity_view);
         TextView itemPriceView = view.findViewById(R.id.item_price_view);
 
         String itemImageUri = cursor.getString(cursor.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_IMAGE_URI));
         String itemName = cursor.getString(cursor.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_NAME));
         String supplierName = cursor.getString(cursor.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_NAME));
-        final String supplierEmail = cursor.getString(cursor.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_MAIL));
+        final String supplierEmail = cursor.getString(cursor.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_PHONE));
         final Integer quantity = cursor.getInt(cursor.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_QUANTITY));
         Double price = cursor.getDouble(cursor.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_PRICE));
 

@@ -68,7 +68,7 @@ public class Catalog extends AppCompatActivity implements LoaderManager.LoaderCa
         String[] projection = {Contract.InventoryEntry._ID,
                 Contract.InventoryEntry.COLUMN_ITEM_NAME,
                 Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_NAME,
-                Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_MAIL,
+                Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_PHONE,
                 Contract.InventoryEntry.COLUMN_ITEM_QUANTITY,
                 Contract.InventoryEntry.COLUMN_ITEM_PRICE,
                 Contract.InventoryEntry.COLUMN_ITEM_IMAGE_URI};
@@ -112,13 +112,13 @@ public class Catalog extends AppCompatActivity implements LoaderManager.LoaderCa
         String dummyName = getString(R.string.dummy_item_name);
         int dummyQuantity = 50;
         int dummyPrice = 100;
-        String dummyEmail = getString(R.string.dummy_supplier_email);
+        String dummyEmail = getString(R.string.dummy_supplier_phone);
         String dummySupplier = getString(R.string.dummy_supplier_name);
         ContentValues values = new ContentValues();
         values.put(Contract.InventoryEntry.COLUMN_ITEM_NAME, dummyName);
         values.put(Contract.InventoryEntry.COLUMN_ITEM_QUANTITY, dummyQuantity);
         values.put(Contract.InventoryEntry.COLUMN_ITEM_PRICE, dummyPrice);
-        values.put(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_MAIL, dummyEmail);
+        values.put(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_PHONE, dummyEmail);
         values.put(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_NAME, dummySupplier);
 
         Uri addUri = getContentResolver().insert(Contract.InventoryEntry.INVENTORY_ENTRY_CONTENT_URI, values);

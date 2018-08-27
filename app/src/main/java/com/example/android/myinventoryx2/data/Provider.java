@@ -170,9 +170,9 @@ public class Provider extends ContentProvider {
                 throw new IllegalArgumentException("Quantity must be a positive number");
             }
 
-            String email = values.getAsString(InventoryEntry.COLUMN_ITEM_SUPPLIER_MAIL);
-            if (email == null || !validateEmailAddress(email)) {
-                throw new IllegalArgumentException("Email must be entered and should be valid");
+            String phoneNumber = values.getAsString(InventoryEntry.COLUMN_ITEM_SUPPLIER_PHONE);
+            if (phoneNumber == null || !validatePhone(phoneNumber)) {
+                throw new IllegalArgumentException("Phone must be entered and should be valid");
             }
         } catch (IllegalArgumentException e) {
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -181,10 +181,10 @@ public class Provider extends ContentProvider {
         return true;
     }
 
-    private boolean validateEmailAddress(String emailAddress) {
-        if (emailAddress != null) {
-            Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
-            Matcher regexMatcher = regexPattern.matcher(emailAddress);
+    private boolean validatePhone(String phoneNumber) {
+        if (phoneNumber != null) {
+            Pattern regexPattern = Pattern.compile("^[+]?[0-9]{10,13}$");
+            Matcher regexMatcher = regexPattern.matcher(phoneNumber);
             return regexMatcher.matches();
         }
         return false;

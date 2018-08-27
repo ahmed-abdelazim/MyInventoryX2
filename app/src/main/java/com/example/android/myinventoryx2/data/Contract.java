@@ -32,7 +32,7 @@ public final class Contract {
         public static final String COLUMN_ITEM_PRICE = "price";
         public static final String COLUMN_ITEM_QUANTITY = "quantity";
         public static final String COLUMN_ITEM_SUPPLIER_NAME = "supplier_name";
-        public static final String COLUMN_ITEM_SUPPLIER_MAIL = "supplier_mail";
+        public static final String COLUMN_ITEM_SUPPLIER_PHONE = "supplier_phone";
         public static final String COLUMN_ITEM_IMAGE_URI = "image_uri";
 
 

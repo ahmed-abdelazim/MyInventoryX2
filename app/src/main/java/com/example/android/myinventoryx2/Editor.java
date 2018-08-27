@@ -39,13 +39,14 @@ public class Editor extends AppCompatActivity implements LoaderManager.LoaderCal
 
     private EditText nameEditText;
     private EditText supplierNameEditText;
-    private EditText supplierMailEditText;
+    private EditText supplierPhoneEditText;
     private EditText quantityEditText;
     private EditText priceEditText;
     private ImageView itemImage;
     private Uri itemImageUri;
     private Button increaseQuantityButton;
     private Button decreaseQuantityButton;
+    private Button callButton;
     private TextView orderMoreView;
 
     @Override
@@ -59,18 +60,22 @@ public class Editor extends AppCompatActivity implements LoaderManager.LoaderCal
             setTitle(R.string.details_edit_item);
             getLoaderManager().initLoader(LOADER_ID, null, this);
         } else {
+            callButton = findViewById(R.id.call_button);
             setTitle(R.string.details_add_item);
+            callButton.setVisibility(View.GONE);
+
         }
 
         nameEditText = findViewById(R.id.name_edit_text);
         supplierNameEditText = findViewById(R.id.supplier_edit_text);
-        supplierMailEditText = findViewById(R.id.supplier_mail_edit_text);
+        supplierPhoneEditText = findViewById(R.id.supplier_phone_edit_text);
         quantityEditText = findViewById(R.id.quantity_edit_text);
         priceEditText = findViewById(R.id.price_edit_text);
         itemImage = findViewById(R.id.item_image);
         increaseQuantityButton = findViewById(R.id.increase_button);
         decreaseQuantityButton = findViewById(R.id.decrease_button);
         orderMoreView = findViewById(R.id.order_more_view);
+        callButton = findViewById(R.id.call_button);
 
         increaseQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,13 +118,24 @@ public class Editor extends AppCompatActivity implements LoaderManager.LoaderCal
             }
         });
 
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String phone = supplierPhoneEditText.getText().toString().trim();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                startActivity(intent);
+
+            }
+        });
+
         orderMoreView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("message/rfc822");
                 i.putExtra(Intent.EXTRA_EMAIL, supplierNameEditText.getText().toString());
-                i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.order_more_item, nameEditText.getText().toString()));
+                i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.order_more_item) + nameEditText.getText().toString());
                 try {
                     startActivity(Intent.createChooser(i, getString(R.string.send_mail)));
                 } catch (android.content.ActivityNotFoundException ex) {
@@ -161,7 +177,7 @@ public class Editor extends AppCompatActivity implements LoaderManager.LoaderCal
             String itemImageUri = data.getString(data.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_IMAGE_URI));
             String itemName = data.getString(data.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_NAME));
             String supplierName = data.getString(data.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_NAME));
-            final String supplierEmail = data.getString(data.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_MAIL));
+            final String supplierPhone = data.getString(data.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_PHONE));
             final Integer quantity = data.getInt(data.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_QUANTITY));
             Double price = data.getDouble(data.getColumnIndex(Contract.InventoryEntry.COLUMN_ITEM_PRICE));
 
@@ -171,7 +187,7 @@ public class Editor extends AppCompatActivity implements LoaderManager.LoaderCal
 
             nameEditText.setText(itemName);
             supplierNameEditText.setText(supplierName);
-            supplierMailEditText.setText(supplierEmail);
+            supplierPhoneEditText.setText(supplierPhone);
             quantityEditText.setText(String.valueOf(quantity));
             priceEditText.setText(String.valueOf(price));
         }
@@ -181,7 +197,7 @@ public class Editor extends AppCompatActivity implements LoaderManager.LoaderCal
     public void onLoaderReset(Loader<Cursor> loader) {
         nameEditText.getText().clear();
         supplierNameEditText.getText().clear();
-        supplierMailEditText.getText().clear();
+        supplierPhoneEditText.getText().clear();
         quantityEditText.getText().clear();
         priceEditText.getText().clear();
         itemImage.setImageResource(R.drawable.no_product);
@@ -244,7 +260,7 @@ public class Editor extends AppCompatActivity implements LoaderManager.LoaderCal
         ContentValues values = new ContentValues();
         values.put(Contract.InventoryEntry.COLUMN_ITEM_NAME, nameEditText.getText().toString().trim());
         values.put(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_NAME, supplierNameEditText.getText().toString().trim());
-        values.put(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_MAIL, supplierMailEditText.getText().toString().trim());
+        values.put(Contract.InventoryEntry.COLUMN_ITEM_SUPPLIER_PHONE, supplierPhoneEditText.getText().toString().trim());
         if (!TextUtils.isEmpty(quantityEditText.getText())) {
             values.put(Contract.InventoryEntry.COLUMN_ITEM_QUANTITY, Integer.parseInt(quantityEditText.getText().toString().trim()));
         }
@@ -273,25 +289,45 @@ public class Editor extends AppCompatActivity implements LoaderManager.LoaderCal
     }
 
     private boolean showError() {
+        StringBuilder sb = new StringBuilder();
+
         int errors = 0;
         if (TextUtils.isEmpty(nameEditText.getText())) {
+            sb.append(getString(R.string.item_name) + " " + getString(R.string.error_required) + "\n");
+            errors++;
             nameEditText.setError(getString(R.string.error_required));
-            errors++;
-        } else if (TextUtils.isEmpty(supplierMailEditText.getText())) {
-            supplierMailEditText.setError(getString(R.string.error_required));
-            errors++;
-        } else if (TextUtils.isEmpty(priceEditText.getText())) {
-            priceEditText.setError(getString(R.string.error_required));
-            errors++;
-        } else if (TextUtils.isEmpty(supplierNameEditText.getText())) {
+
+        }
+        if (TextUtils.isEmpty(supplierNameEditText.getText())) {
             supplierNameEditText.setError(getString(R.string.error_required));
+            sb.append(getString(R.string.item_supplier_name) + " " + getString(R.string.error_required) + "\n");
             errors++;
-        } else if (TextUtils.isEmpty(quantityEditText.getText()) || Integer.parseInt(quantityEditText.getText().toString().trim()) < 0) {
+        }
+        if (TextUtils.isEmpty(supplierPhoneEditText.getText())) {
+
+            sb.append(getString(R.string.item_supplier_phone) + " " + getString(R.string.error_required) + "\n");
+            errors++;
+            supplierPhoneEditText.setError(getString(R.string.error_required));
+
+        }
+        if (TextUtils.isEmpty(quantityEditText.getText()) || Integer.parseInt(quantityEditText.getText().toString().trim()) < 0) {
             quantityEditText.setError(getString(R.string.error_required));
+            sb.append(getString(R.string.item_quantity) + " " + getString(R.string.error_required) + "\n");
             errors++;
-        } else if (itemImage.getDrawable() == null) {
+        }
+        if (TextUtils.isEmpty(priceEditText.getText())) {
+            sb.append(getString(R.string.item_price) + " " + getString(R.string.error_required) + "\n");
+            errors++;
+            priceEditText.setError(getString(R.string.error_required));
+
+        }
+        if (itemImage.getDrawable() == null) {
             itemImage.setImageResource(R.drawable.no_product);
             errors++;
+        }
+
+        if (errors > 0) {
+            Toast.makeText(this, sb, Toast.LENGTH_LONG).show();
         }
         return errors > 0;
     }
